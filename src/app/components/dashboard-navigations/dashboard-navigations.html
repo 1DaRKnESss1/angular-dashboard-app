@@ -1,0 +1,24 @@
+<nav class="dashboard-navigations">
+  <div class="nav-items-left">
+    <a routerLink="/"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="nav-button">
+      <i class="bi bi-house-door"></i>
+      Dashboard
+    </a>
+
+    <a *ngFor="let item of navItems"
+       [routerLink]="item.path"
+       routerLinkActive="active"
+       class="nav-button">
+      <i class="bi {{item.icon}}"></i>
+      {{item.label}}
+    </a>
+  </div>
+
+  <div class="nav-items-right">
+    <button class="nav-arrow-button">←</button>
+    <button class="nav-arrow-button">→</button>
+  </div>
+</nav>

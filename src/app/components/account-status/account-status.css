@@ -1,0 +1,98 @@
+/* Makes the component itself a flexible container */
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+/* Wrapper for whole block */
+.account-status-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Заголовок */
+.external-section-header {
+  margin-bottom: 1rem;
+}
+
+.external-section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+/* Основна карта */
+.status-card {
+  background-color: #161a20;
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Контейнер степів */
+.stepper-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Один елемент етапу */
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1; /* Розтягується рівномірно */
+  text-align: center;
+  min-width: 0; /* Важливо для flex */
+}
+
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-image: linear-gradient(to right, #4a5058 60%, transparent 40%);
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+  z-index: 1;
+}
+
+.step-item.line-complete:not(:last-child)::after {
+  background-image: linear-gradient(to right, #50e3c2 60%, transparent 40%);
+}
+
+/* Іконка етапу */
+.step-icon-wrapper {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+  background-color: #161a20;
+  padding: 0 4px;
+}
+
+/* Статуси */
+.step-item.complete .step-icon-wrapper {
+  color: #50e3c2;
+}
+
+.step-item.incomplete .step-icon-wrapper {
+  color: #4a5058;
+}
+
+.step-label {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+}

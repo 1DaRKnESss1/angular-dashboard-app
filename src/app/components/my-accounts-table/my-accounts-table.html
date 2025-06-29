@@ -1,0 +1,70 @@
+<div class="dashboard-section my-accounts">
+  <div class="my-accounts-header">
+    <h3>My accounts</h3>
+    <div class="accounts-controls">
+      <input type="text" placeholder="Search" class="accounts-search" [(ngModel)]="searchTerm" />
+      <button class="control-button">Filter</button>
+      <button class="control-button">Sort</button>
+      <button class="control-button">Group</button>
+      <button class="control-button new-button">+ New</button>
+    </div>
+  </div>
+
+  <div class="accounts-table-wrapper">
+    <table class="accounts-table">
+      <thead>
+        <tr>
+          <th>ACCOUNT NAME/TYPE</th>
+          <th>LINE</th>
+          <th>BROKER</th>
+          <th>RENEWAL DATE</th>
+          <th>PREMIUM</th>
+          <th>RATED PREMIUM</th>
+          <th>LOSS RATIO</th>
+          <th>APPETITE</th>
+          <th>STATUS</th>
+          <th>TRIAGE</th>
+          <th>WINNABILITY</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of filteredAccounts">
+          <td>
+            <span class="account-name">{{ account.accountName }}</span>
+            <span class="account-type">{{ account.accountType }}</span>
+          </td>
+          <td>{{ account.line }}</td>
+          <td>{{ account.broker }}</td>
+          <td>{{ account.renewalDate }}</td>
+          <td><span class="premium-value">{{ account.premium }}</span></td>
+          <td>{{ account.ratedPremium }}</td>
+          <td><span [ngClass]="'data-tag ' + getLossRatioClass(account.lossRatio)">{{ account.lossRatio }}</span></td>
+          <td><span class="data-tag solid-blue">{{ account.appetite }}</span></td>
+          <td>
+            <span class="status-dot" [class]="getStatusClass(account.status)"></span>
+            {{ account.status }}
+          </td>
+          <td><span class="data-tag outline">{{ account.triage }}</span></td>
+          <td>
+            <div class="winnability-cell">
+              <div class="winnability-container">
+                <div class="winnability-dots">
+                  <span *ngFor="let isFilled of getWinnabilityDots(account.winnability)" 
+                        [class.filled]="isFilled" 
+                        class="rating-dot"></span>
+                </div>
+                <span class="winnability-text">{{ account.winnability }}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button class="actions-menu-button">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar';
+import { DashboardNavigationsComponent } from './components/dashboard-navigations/dashboard-navigations'; 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, DashboardNavigationsComponent], 
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected title = 'angular-dashboard-app';
+export class AppComponent {
+  title = 'angular-dashboard-app';
 }

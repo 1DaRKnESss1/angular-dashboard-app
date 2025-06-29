@@ -1,0 +1,16 @@
+<div>
+  <div class="external-section-header">
+    <h2 class="external-section-title">{{ complianceData.title }}</h2>
+    <a [href]="complianceData.historyLink.url" class="history-link">
+      {{ complianceData.historyLink.text }}
+    </a>
+  </div>
+  <div class="compliance-card">
+    <div class="compliance-list">
+      <div *ngFor="let item of complianceData.items" class="compliance-item">
+        <i class="bi bi-check-circle compliance-icon"></i>
+        <span>{{ item.text }}</span>
+      </div>
+    </div>
+  </div>
+</div>

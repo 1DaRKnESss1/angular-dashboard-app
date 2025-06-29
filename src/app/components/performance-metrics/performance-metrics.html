@@ -1,0 +1,47 @@
+<section class="performance-metrics-section">
+  <h2 class="section-title">{{ metricsData.title }}</h2>
+  <div class="metrics-grid">
+
+    <div *ngFor="let metric of metricsData.metrics" class="metric-card">
+      
+      <div *ngIf="metric.type !== 'distribution'" class="metric-header">
+        <span class="metric-title">{{ metric.title }}</span>
+        <div *ngIf="metric.type === 'winnability'" class="winnability-dots">
+          <span *ngFor="let isActive of getWinnabilityDots(metric.activeDots, metric.totalDots)" 
+                class="dot" 
+                [class.active]="isActive"></span>
+        </div>
+      </div>
+
+      <p *ngIf="metric.type === 'winnability'" class="metric-value large">{{ metric.value }}</p>
+
+      <div *ngIf="metric.type === 'ratio'" class="metric-value-row">
+        <p class="metric-value">{{ metric.value }}</p>
+        <p class="metric-subtext">{{ metric.subtext }}</p>
+      </div>
+
+      <ng-container *ngIf="metric.type === 'growth'">
+        <div class="metric-value-row">
+          <p class="metric-value">{{ metric.value }}</p>
+          <p class="metric-subtext">{{ metric.subtext_line1 }}</p>
+        </div>
+        <p class="metric-subtext">{{ metric.subtext_line2 }}</p>
+      </ng-container>
+
+      <ng-container *ngIf="metric.type === 'distribution'">
+        <span class="metric-title">{{ metric.title }}</span>
+        <div class="distribution-list">
+          <div *ngFor="let item of metric.items" class="distribution-item">
+            <div class="distribution-bar-wrapper">
+              <div class="distribution-bar" [style.width]="item.value"></div>
+            </div>
+            <span class="distribution-label-text">{{ item.label }} {{ item.value }}</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <a *ngIf="metric.link" [href]="metric.link.url" class="metric-link">{{ metric.link.text }}</a>
+    </div>
+
+  </div>
+</section>

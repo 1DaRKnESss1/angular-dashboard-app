@@ -1,0 +1,45 @@
+/* ОНОВЛЕНО: Додано :host та стилі для .market-intelligence */
+:host {
+  display: flex;
+}
+.market-intelligence {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+/* ----- Кінець оновлення ----- */
+
+.market-intelligence h3 {
+  color: #e0e0e0;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Трохи збільшено відступ */
+  /* ОНОВЛЕНО: Додано flex-grow, щоб список заповнював простір */
+  flex-grow: 1;
+  justify-content: space-around; /* Рівномірно розподіляє новини */
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #c0c0c0;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.news-item p {
+  margin: 0;
+}
+
+.news-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

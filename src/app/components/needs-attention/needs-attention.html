@@ -1,0 +1,13 @@
+<div class="needs-attention-section">
+  <div class="attention-header">
+    <i class="bi bi-exclamation-circle attention-icon"></i>
+    <h4>{{ attentionData.title }}</h4>
+  </div>
+  <div class="attention-content">
+    <div *ngFor="let item of attentionData.items" class="attention-item">
+      <h5>{{ item.title }}</h5>
+      <p>{{ item.details }}</p>
+      <a [href]="item.link.url">{{ item.link.text }}</a>
+    </div>
+  </div>
+</div>

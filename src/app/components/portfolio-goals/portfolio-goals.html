@@ -1,0 +1,46 @@
+<div class="dashboard-section portfolio-goals">
+  <h3>Portfolio goals</h3>
+  <div class="goals-list">
+    <div *ngFor="let goal of portfolioGoalsData; let i = index">
+
+      <div *ngIf="goal.title === 'PORTFOLIO LOSS RATIO TARGET' || goal.title === 'RENEWAL RETENTION'; else simpleGoal">
+        <div class="goal-item-redesigned">
+          <div class="goal-header"><span class="goal-title">{{ goal.title }}</span></div>
+          <div class="progress-bar-container-redesigned">
+            <span class="goal-target" [style.left.%]="goal.title === 'PORTFOLIO LOSS RATIO TARGET' ? goal.targetIndicatorPosition : calculatePosition(goal)">{{ goal.target }}</span>
+            <div *ngIf="goal.targetIndicatorPosition" class="target-indicator-top" [style.left.%]="goal.targetIndicatorPosition"><svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.5L19.5263 1.25H0.473724L10 15.5Z" fill="#007BFF" stroke="#007BFF" strokeWidth="1" strokeLinejoin="round"/></svg></div>
+            <div class="progress-bar-segments-wrapper">
+              <div *ngFor="let segment of goal.segments" class="progress-bar-segment" [style.width.%]="segment.percentage" [style.backgroundColor]="segment.color"></div>
+            </div>
+            <div *ngIf="goal.title !== 'PORTFOLIO LOSS RATIO TARGET'" class="progress-value-block" [style.left.%]="calculatePosition(goal)" [style.backgroundColor]="getValueIndicatorColor(goal)">{{ goal.currentValue }}</div>
+            <span *ngIf="goal.title === 'PORTFOLIO LOSS RATIO TARGET'" class="progress-value-overlay" [style.left.%]="calculatePosition(goal)">{{ goal.currentValue }}</span>
+            <div class="value-indicator-bottom" [style.left.%]="calculatePosition(goal)"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 0L21.3923 13.5H0.607696L11 0Z" [attr.fill]="getValueIndicatorColor(goal)" [attr.stroke]="getValueIndicatorColor(goal)" strokeWidth="1" strokeLinejoin="round"/></svg></div>
+            <span class="status-text-overlay" [style.left.%]="calculatePosition(goal)" [style.color]="getValueIndicatorColor(goal)">{{ goal.status }}</span>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #simpleGoal>
+        <div class="goal-item-redesigned">
+          <div class="goal-header">
+            <span class="goal-title">{{ goal.title }}</span>
+          </div>
+          <div class="progress-bar-container-new-biz">
+            <div class="progress-bar-wrapper-new-biz">
+              <div class="progress-bar-track-new-biz">
+                <div class="progress-bar-fill-new-biz" [style.width.%]="goal.progress">
+                  <span class="progress-value-new-biz">{{ goal.currentValue }}</span>
+                </div>
+              </div>
+              <span class="target-value-label-new-biz">{{ goal.targetValue }}</span>
+            </div>
+            <span class="percentage-label-new-biz" [style.left.%]="goal.progress">
+              {{ goal.progress }}%
+            </span>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

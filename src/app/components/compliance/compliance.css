@@ -1,0 +1,55 @@
+/* :host і обгортка змушують компонент займати весь доступний простір */
+:host {
+  display: flex;
+}
+.compliance-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Стилі для заголовка та посилання */
+.external-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.external-section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0;
+}
+.history-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.history-link:hover {
+  text-decoration: underline;
+}
+
+.compliance-card {
+  background-color: #161a20;
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 1.5rem;
+  /* Додаємо flex-grow, щоб картка розтягнулася */
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.compliance-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem 1.5rem; 
+  width: 100%;
+}
+
+/* ... решта стилів без змін ... */
+.compliance-item { display: flex; align-items: center; gap: 0.75rem; }
+.compliance-icon { color: #50e3c2; font-size: 1.2rem; flex-shrink: 0; }
+.compliance-item span { font-size: 1rem; color: #e0e0e0; }

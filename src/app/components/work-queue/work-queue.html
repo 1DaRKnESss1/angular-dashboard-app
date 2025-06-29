@@ -1,0 +1,56 @@
+<div class="dashboard-section work-queue">
+  <h3>Work Queue</h3>
+
+  <div class="work-queue-tabs">
+    <button
+      *ngFor="let tab of tabs"
+      class="tab-button"
+      [class.active]="activeTab === tab.name"
+      (click)="setActiveTab(tab.name)"
+    >
+      {{ tab.name }} ({{ tab.count }})
+    </button>
+  </div>
+
+  <div class="work-queue-table">
+    <table>
+      <thead>
+        <tr>
+          <th>ORIGINATOR</th>
+          <th>CLIENT/LINE</th>
+          <th>TYPE</th>
+          <th>STATUS</th>
+          <th>CREATED</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredData">
+          <td>
+            <span class="originator-avatar" [ngStyle]="{ 'background-color': item.avatarColor }">
+              {{ item.originatorInitials }}
+            </span>
+            {{ item.originatorName }}
+          </td>
+          <td>
+            {{ item.clientName }}<br />
+            <small>{{ item.clientLine }}</small>
+          </td>
+          <td>{{ item.type }}</td>
+          <td>
+            <span class="status-dot" [ngClass]="getStatusClass(item.status)"></span>
+            {{ item.status }}
+          </td>
+          <td>{{ item.created }}</td>
+          <td>
+            <button class="info-button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

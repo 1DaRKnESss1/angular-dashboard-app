@@ -1,0 +1,57 @@
+/* src/app/pages/dashboard/dashboard.css */
+
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
+.dashboard-content {
+  display: grid;
+  width: 100%;
+  flex-grow: 1;
+  /* Використовуємо більш гнучкі пропорції для колонок */
+  grid-template-columns: minmax(0, 6fr) minmax(0, 2fr) minmax(0, 2fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "work-queue   portfolio   right-stack"
+    "accounts     accounts    accounts";
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* Застосовуємо ці стилі до всіх прямих нащадків сітки */
+.dashboard-content > * {
+  min-height: 0;
+  display: flex; /* Важливо, щоб елементи могли розтягуватися */
+  flex-direction: column;
+}
+
+/* Розміщення елементів по сітці */
+app-work-queue { grid-area: work-queue; }
+app-portfolio-goals { grid-area: portfolio; }
+app-my-accounts-table { grid-area: accounts; }
+
+.right-stack {
+  grid-area: right-stack;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Збільшимо відступ */
+}
+
+.right-stack > app-quick-actions,
+.right-stack > app-market-intelligence {
+  flex: 1;
+}
+
+/* Адаптивність для менших екранів */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "work-queue" "portfolio" "right-stack" "accounts";
+  }
+  .right-stack > app-quick-actions,
+  .right-stack > app-market-intelligence {
+    flex: none;
+  }
+}

@@ -1,0 +1,27 @@
+<section class="policies-section">
+  <h2 class="section-title">{{ policiesData.title }}</h2>
+
+  <div class="policies-container">
+    <div class="policies-grid">
+      <div *ngFor="let policy of policiesData.policies" class="policy-card">
+
+        <div class="policy-card-header">
+          <div class="policy-icon-wrapper" [style.color]="policy.color">
+            <i class="bi" [ngClass]="getIconClass(policy.icon)"></i>
+          </div>
+          <h3 class="policy-name">{{ policy.name }}</h3>
+        </div>
+
+        <div class="policy-card-body">
+          <p class="policy-detail">
+            Premium: <span>{{ policy.premium }}</span>
+          </p>
+          <p class="policy-detail">
+            Eff. Date: <span>{{ policy.effDate }}</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

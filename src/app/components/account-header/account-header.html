@@ -1,0 +1,12 @@
+<div class="account-header">
+  <div class="account-logo"></div>
+  <div class="account-details">
+    <h1>{{ headerData.name }}</h1>
+    <div class="account-info-right">
+      <div *ngFor="let info of headerData.infoBlocks" class="info-block">
+        <span class="info-label">{{ info.label }}</span>
+        <span class="info-value">{{ info.value }}</span>
+      </div>
+    </div>
+  </div>
+</div>

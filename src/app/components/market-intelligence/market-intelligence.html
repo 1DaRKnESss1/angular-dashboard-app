@@ -1,0 +1,9 @@
+<div class="dashboard-section market-intelligence">
+  <h3>Market intelligence</h3>
+  <div class="news-list">
+    <div *ngFor="let item of marketIntelligenceData" class="news-item">
+      <span class="news-dot" [style.backgroundColor]="item.color"></span>
+      <p>{{ item.text }}</p>
+    </div>
+  </div>
+</div>

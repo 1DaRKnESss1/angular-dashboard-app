@@ -1,0 +1,132 @@
+<div>
+  <div class="external-section-header">
+    <h2 class="external-section-title">{{ detailsData.title }}</h2>
+  </div>
+  <div class="details-card">
+    <nav class="details-nav">
+      <div *ngFor="let section of nav" class="nav-section-wrapper">
+        <div *ngIf="section.items && section.items.length > 0; else inactiveNav">
+          <div class="nav-item-list-card">
+            <h3 class="nav-category-title">
+              {{ section.category }}
+              <span class="nav-count">{{ section.count }}</span>
+            </h3>
+            <ul>
+              <li *ngFor="let item of section.items" [class.active]="section.active === item">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <ng-template #inactiveNav>
+          <h3 class="nav-category-title inactive">
+            {{ section.category }}
+            <span class="nav-count">{{ section.count }}</span>
+          </h3>
+        </ng-template>
+      </div>
+    </nav>
+
+    <main class="details-content">
+      <h1 class="winnability-title">{{ winnability.main_title }}</h1>
+      
+      <div class="winnability-overview">
+        <div class="overview-item score-card">
+          <h4>{{ winnability.overall_score.title }}</h4>
+          <div class="score-wrapper">
+            <p class="score-value">{{ winnability.overall_score.score }}%</p>
+            <div class="rating-outline-box">
+              <div class="score-rating-block">
+                <div class="dots-separator">
+                  <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <p class="score-rating">{{ winnability.overall_score.rating }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overview-item">
+          <h4>{{ winnability.historical_trend.title }}</h4>
+          <div class="trend-chart-container">
+            <svg viewBox="0 0 100 40" class="trend-chart-svg" preserveAspectRatio="none">
+              <path d="M 0 30 L 25 22 L 50 26 L 75 12 L 100 18" stroke="#4a90e2" strokeWidth="2.5" fill="none" vectorEffect="non-scaling-stroke" />
+            </svg>
+            <div class="chart-labels">
+              <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Now</span>
+            </div>
+          </div>
+        </div>
+        <div class="overview-item">
+          <h4>{{ winnability.position.title }}</h4>
+          <div class="position-bars">
+            <div *ngFor="let bar of winnability.position.bars" class="position-bar-item">
+              <div class="progress-bar-background">
+                <div class="progress-bar-fill gradient" [style.width.%]="bar.value"></div>
+              </div>
+              <div class="position-bar-label">
+                {{ bar.label }}: <strong>{{ bar.value }}%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="winnability-factors">
+        <div class="factors-column">
+          <h3 class="factors-title">
+            <i class="bi bi-arrow-up-circle factor-icon increase"></i>
+            {{ winnability.increasing_factors.title }}
+          </h3>
+          <div class="factors-list">
+            <div *ngFor="let factor of winnability.increasing_factors.factors; let i = index" class="factor-item">
+              <span class="factor-number increase">{{ i + 1 }}</span>
+              <div class="factor-content-wrapper">
+                <div class="factor-label">{{ factor.name }}</div>
+                <div class="factor-visual">
+                  <div class="factor-bar-wrapper">
+                    <div class="factor-bar-fill green" [style.width.%]="factor.value * 3"></div>
+                  </div>
+                  <span class="factor-value increase">+{{ factor.value }}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="factors-column">
+          <h3 class="factors-title">
+            <i class="bi bi-arrow-down-circle factor-icon decrease"></i>
+            {{ winnability.decreasing_factors.title }}
+          </h3>
+          <div class="factors-list">
+            <div *ngFor="let factor of winnability.decreasing_factors.factors; let i = index" class="factor-item">
+              <span class="factor-number decrease">{{ i + 1 }}</span>
+              <div class="factor-content-wrapper">
+                <div class="factor-label">{{ factor.name }}</div>
+                <div class="factor-visual">
+                  <div class="factor-bar-wrapper">
+                    <div class="factor-bar-fill yellow" [style.width.%]="factor.value * -3"></div>
+                  </div>
+                  <span class="factor-value decrease">{{ factor.value }}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recommendations">
+        <h3 class="recommendations-title">
+          <i class="bi bi-rocket-takeoff-fill recommendation-icon-title"></i>
+          {{ recommendations.title }}
+        </h3>
+        <div *ngFor="let rec of recommendations.items" class="recommendation-item">
+          <div class="recommendation-text">
+            <p class="rec-title">{{ rec.title }}</p>
+            <p class="rec-description">{{ rec.description }}</p>
+          </div>
+          <button class="apply-button">Apply</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

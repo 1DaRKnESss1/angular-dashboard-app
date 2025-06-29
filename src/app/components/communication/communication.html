@@ -1,0 +1,52 @@
+<div>
+  <div class="external-section-header">
+    <h2 class="external-section-title">{{ communicationData.title }}</h2>
+  </div>
+  <div class="communication-card">
+    <div class="communication-toolbar">
+      <input type="text" placeholder="Search" class="comm-search-input" />
+      <div class="comm-buttons">
+        <button class="comm-button filter">Filter</button>
+        <button class="comm-button group">Group</button>
+      </div>
+    </div>
+    <div class="communication-grid">
+      <div class="communication-column">
+        <div *ngFor="let message of leftColumnItems" class="message-item" [class.highlighted]="message.isHighlighted">
+          <div class="message-header">
+            <span *ngIf="message.status === 'new'" class="status-tag new">NEW</span>
+            <span *ngIf="message.status === 'responded'" class="status-tag responded">Responded</span>
+            <h3 class="message-title">{{ message.title }}</h3>
+          </div>
+          <p class="message-sender-info">{{ message.sender }} // {{ message.date }}</p>
+          <p class="message-snippet">{{ message.snippet }}</p>
+          <div class="message-footer">
+            <div *ngIf="message.attachments > 0" class="attachments-badge">
+              <i class="bi bi-paperclip"></i>
+              {{ message.attachments }} attachments
+            </div>
+            <button *ngIf="message.status !== 'responded'" class="reply-button">Reply</button>
+          </div>
+        </div>
+      </div>
+      <div class="communication-column">
+        <div *ngFor="let message of rightColumnItems" class="message-item" [class.highlighted]="message.isHighlighted">
+          <div class="message-header">
+            <span *ngIf="message.status === 'new'" class="status-tag new">NEW</span>
+            <span *ngIf="message.status === 'responded'" class="status-tag responded">Responded</span>
+            <h3 class="message-title">{{ message.title }}</h3>
+          </div>
+          <p class="message-sender-info">{{ message.sender }} // {{ message.date }}</p>
+          <p class="message-snippet">{{ message.snippet }}</p>
+          <div class="message-footer">
+            <div *ngIf="message.attachments > 0" class="attachments-badge">
+              <i class="bi bi-paperclip"></i>
+              {{ message.attachments }} attachments
+            </div>
+            <button *ngIf="message.status !== 'responded'" class="reply-button">Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

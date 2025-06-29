@@ -1,0 +1,94 @@
+<div>
+  <div class="external-section-header">
+    <h2 class="external-section-title">{{ policiesTableData.title }}</h2>
+  </div>
+  <div class="policies-table-card">
+    <div class="communication-toolbar">
+      <input type="text" placeholder="Search" class="comm-search-input" />
+      <div class="comm-buttons">
+        <button class="comm-button filter active">Filter</button>
+        <button class="comm-button group">Group</button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>LINE</th>
+            <th>EFF. DATE</th>
+            <th>EXP. DATE</th>
+            <th>STATUS</th>
+            <th>EXPIRING TECH</th>
+            <th>EXPIRING PREMIUM</th>
+            <th>RENEWAL TO TECH</th>
+            <th>RENEWAL TECH</th>
+            <th>RENEWAL PREMIUM</th>
+            <th>RATE CHANGE</th>
+            <th>LOSS RATIO</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let policy of policiesTableData.policies">
+            <td>
+              <div class="line-cell">
+                <div class="policy-icon" [ngClass]="policy.icon">
+                  <i class="bi" [ngClass]="getIconClass(policy.icon)"></i>
+                </div>
+                <div>
+                  <span class="line-name">{{ policy.line }}</span>
+                  <span class="line-id">{{ policy.lineId }}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{ policy.effDate }}</td>
+            <td>{{ policy.expDate }}</td>
+            <td>
+              <span class="status-dot" [ngClass]="policy.status.toLowerCase()"></span>
+              {{ policy.status }}
+            </td>
+            <td>{{ formatCurrency(policy.expiringTech) }}</td>
+            <td>{{ formatCurrency(policy.expiringPremium) }}</td>
+            <td>{{ formatCurrency(policy.renewalToTech) }}</td>
+            <td>{{ formatCurrency(policy.renewalTech) }}</td>
+            <td class="premium-bold">{{ formatCurrency(policy.renewalPremium) }}</td>
+            <td>
+              <span [class.rate-change-high]="policy.rateChange && policy.rateChange > 5">
+                {{ policy.rateChange !== null ? (policy.rateChange.toFixed(1) + '%') : 'N/A' }}
+              </span>
+            </td>
+            <td>
+              <span *ngIf="policy.lossRatio !== null" class="loss-ratio-badge" [ngClass]="getLossRatioColorClass(policy.lossRatio)">
+                {{ policy.lossRatio }}%
+              </span>
+              <span *ngIf="policy.lossRatio === null" class="loss-ratio-na">N/A</span>
+            </td>
+            <td>
+              <button class="action-btn">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="total-label">TOTAL ({{ policiesTableData.policies.length }})</td>
+            <td>{{ formatCurrency(policiesTableData.totals.expiringTech) }}</td>
+            <td>{{ formatCurrency(policiesTableData.totals.expiringPremium) }}</td>
+            <td>{{ formatCurrency(policiesTableData.totals.renewalToTech) }}</td>
+            <td>{{ formatCurrency(policiesTableData.totals.renewalTech) }}</td>
+            <td class="premium-bold">{{ formatCurrency(policiesTableData.totals.renewalPremium) }}</td>
+            <td>{{ policiesTableData.totals.rateChange }}%</td>
+            <td>
+                <span *ngIf="policiesTableData.totals.lossRatio" class="loss-ratio-badge" [ngClass]="getLossRatioColorClass(policiesTableData.totals.lossRatio)">
+                    {{ policiesTableData.totals.lossRatio }}%
+                </span>
+            </td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
