@@ -4,11 +4,7 @@ This is a front-end application built with **Angular** that serves as a high-fid
 
 This application was developed as a test assignment to demonstrate skills in creating complex, data-driven user interfaces with a component-based architecture, responsive design, and interactive elements.
 
-**[Live Demo]** (insert_your_deployment_link_here)
-
-## 🖼️ Screenshots
-
-*(It is recommended to add screenshots of the Dashboard and Account pages here)*
+**[Live Demo]** (https://angular-dashboard-app-sigma.vercel.app))
 
 ## ✨ Key Features & Implemented Components
 
@@ -49,7 +45,6 @@ As encouraged by the assignment, an AI assistant (**Gemini Pro by Google**) was 
 - Generating Angular components, templates, and TypeScript logic.
 - Debugging complex issues related to CSS layout, TypeScript errors, and Angular's specific features.
 - Refactoring code to adhere to best practices.
-- Generating and refining this `README.md` file.
 
 ## 🚀 Getting Started
 
